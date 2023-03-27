@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from "mongoose";
 import router from './routes/routes.js';
+import  profileRouter from './routes/profileRoutes.js';
 import cookieParser from 'cookie-parser';
 import requireAuth from './middleware/middleware.js';
 import * as dotenv from 'dotenv';
@@ -26,7 +27,9 @@ mongoose.connect(dbURI)
 
 
 
+
 app.use(router);
+app.use(profileRouter)
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);
 });
