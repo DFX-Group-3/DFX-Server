@@ -19,6 +19,8 @@ const profile_post = async (req, res) => {
         profileHeadline,
         profileVideoURL,
         tagline } = req.body
+    const user_id = req.user._id
+    
     
     let emptyFields = []
     console.log(emptyFields.length)
@@ -42,7 +44,8 @@ const profile_post = async (req, res) => {
             githubURL,
             profileHeadline,
             profileVideoURL,
-            tagline
+            tagline, 
+            user_id
         })
         res.status(200).json(profile)
     } catch (error) {

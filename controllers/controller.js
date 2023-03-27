@@ -15,6 +15,7 @@ const login_post = async (req, res) => {
         const user = await loginCollection.login(email, password);
         console.log(user._id)
         const token = createToken(user._id)
+        console.log(token)
         res.status(200).json({token})
     } catch (error) {
         res.status(400).send({ error: error.message })
