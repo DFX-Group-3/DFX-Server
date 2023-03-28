@@ -1,5 +1,5 @@
 import Profile from "../model/profileModel.js";
-
+import mongoose from "mongoose";
 
 const profile_get = async (req, res) => {
     // const { _id } = req.user
@@ -54,4 +54,25 @@ const profile_post = async (req, res) => {
 }
 
 
-export {profile_get,profile_post}
+const profile_patch = async (req, res) => {
+    
+    const { id } = req.params
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ error: 'No such peep validation' })
+    }
+
+    const profile = await Profile.findByIdAndUpdate({ _id: id }, {
+        ...req.body
+    })
+
+    if (!profile) {
+        return res.status(400).json({ error: 'No such profile' })
+    }
+
+    res.status(200).json(profile)
+
+}
+
+
+
+export {profile_get,profile_post, profile_patch}
