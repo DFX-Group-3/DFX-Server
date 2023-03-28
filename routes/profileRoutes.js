@@ -9,5 +9,5 @@ profileRouter.use(requireAuth)
 
 profileRouter.get('/profile', profile_get)
 profileRouter.post('/profile', profile_post)
-profileRouter.patch('/profile/:id',profile_patch)
+profileRouter.patch('/profile',profile_patch)
 export default profileRouter

@@ -2,9 +2,10 @@ import Profile from "../model/profileModel.js";
 import mongoose from "mongoose";
 
 const profile_get = async (req, res) => {
-    // const { _id } = req.user
-    // const profile = await Profile.find()
-    res.status(200).json({message: 'success'})
+    const user_id = req.user._id
+    console.log(user_id)
+    const profile = await Profile.find({user_id})
+    res.status(200).json(profile)
 }
 
 const profile_post = async (req, res) => {
@@ -56,20 +57,22 @@ const profile_post = async (req, res) => {
 
 const profile_patch = async (req, res) => {
     
-    const { id } = req.params
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    
+    const user_id = req.user._id
+    console.log('userid',user_id)
+    if (!mongoose.Types.ObjectId.isValid(user_id)) {
         return res.status(400).json({ error: 'No such peep validation' })
     }
 
-    const profile = await Profile.findByIdAndUpdate({ _id: id }, {
-        ...req.body
-    })
+    const profile = await Profile.find({ user_id: user_id }).updateOne({ user_id: user_id }, { ...req.body })
+    const updatedProfile = await Profile.find({ user_id: user_id })
+    // const profile = await Profile.findByIdAndUpdate( user_id , {...req.body} )
 
     if (!profile) {
         return res.status(400).json({ error: 'No such profile' })
     }
 
-    res.status(200).json(profile)
+    res.status(200).json(updatedProfile)
 
 }
 
