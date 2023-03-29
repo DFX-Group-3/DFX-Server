@@ -5,7 +5,9 @@ import router from './routes/routes.js';
 import  profileRouter from './routes/profileRoutes.js';
 import cookieParser from 'cookie-parser';
 import requireAuth from './middleware/middleware.js';
+import experienceRouter from './routes/experienceRoutes.js';
 import * as dotenv from 'dotenv';
+import portfolioRouter from './routes/portfolioRoutes.js';
 dotenv.config()
 
 const app = express();
@@ -30,6 +32,9 @@ mongoose.connect(dbURI)
 
 app.use(router);
 app.use(profileRouter)
+app.use(experienceRouter)
+app.use(portfolioRouter)
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);
 });

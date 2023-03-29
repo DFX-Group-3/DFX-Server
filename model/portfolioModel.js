@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
 
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 
 const portfolioModel = new Schema({
     imageURL: {
@@ -22,6 +22,10 @@ const portfolioModel = new Schema({
     },
     priority: {
         type: Number,
+        required: true
+    },
+    user_id: {
+        type: String,
         required: true
     }
     

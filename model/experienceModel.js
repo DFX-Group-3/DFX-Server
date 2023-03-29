@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import validator from "validator";
 
 
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 
 const experienceModel = new Schema({
     imageURL: {
@@ -31,6 +31,10 @@ const experienceModel = new Schema({
     },
     endDate: {
         type: Date,
+        required: true
+    },
+    user_id: {
+        type: String,
         required: true
     }
 })
