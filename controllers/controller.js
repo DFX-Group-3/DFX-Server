@@ -14,9 +14,10 @@ const login_post = async (req, res) => {
     try {
         const user = await loginCollection.login(email, password);
         console.log(user._id)
+        const _id = user._id
         const token = createToken(user._id)
         console.log(token)
-        res.status(200).json({token})
+        res.status(200).json({token, _id})
     } catch (error) {
         res.status(400).send({ error: error.message })
     }
