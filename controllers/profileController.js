@@ -3,13 +3,12 @@ import mongoose from "mongoose";
 
 const profile_get = async (req, res) => {
     const user_id = req.user._id
-    console.log(user_id)
-    const profile = await Profile.find({user_id})
+    const profile = await Profile.findOne({ user_id });
     res.status(200).json(profile)
 }
 
 const profile_post = async (req, res) => {
-    
+
     const { profileImageURL,
         firstName,
         lastName,
@@ -21,8 +20,8 @@ const profile_post = async (req, res) => {
         profileVideoURL,
         tagline } = req.body
     const user_id = req.user._id
-    
-    
+
+
     let emptyFields = []
     console.log(emptyFields.length)
     if (!profileImageURL && !firstName && !lastName && !nationality && !linkedInURL && !pronouns && !githubURL && !profileHeadline && !profileVideoURL && !tagline) {
@@ -45,21 +44,21 @@ const profile_post = async (req, res) => {
             githubURL,
             profileHeadline,
             profileVideoURL,
-            tagline, 
+            tagline,
             user_id
         })
         res.status(200).json(profile)
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(400).json({ error: error.message })
     }
 }
 
 
 const profile_patch = async (req, res) => {
-    
-    
+
+
     const user_id = req.user._id
-    console.log('userid',user_id)
+    console.log('userid', user_id)
     if (!mongoose.Types.ObjectId.isValid(user_id)) {
         return res.status(400).json({ error: 'No such peep validation' })
     }
@@ -78,4 +77,4 @@ const profile_patch = async (req, res) => {
 
 
 
-export {profile_get,profile_post, profile_patch}
+export { profile_get, profile_post, profile_patch }
