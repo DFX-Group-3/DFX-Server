@@ -8,6 +8,7 @@ import requireAuth from './middleware/middleware.js';
 import experienceRouter from './routes/experienceRoutes.js';
 import * as dotenv from 'dotenv';
 import portfolioRouter from './routes/portfolioRoutes.js';
+import qualificationRouter from './routes/qualificationRoutes.js';
 dotenv.config()
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(router);
 app.use(profileRouter)
 app.use(experienceRouter)
 app.use(portfolioRouter)
+app.use(qualificationRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`);

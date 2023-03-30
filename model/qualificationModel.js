@@ -7,15 +7,15 @@ const qualificationModel = new Schema({
         type: String,
         required: true
     },
-    organization: {
+    grade: {
         type: String,
         required: true
     },
-    priority: {
+    subjectName: {
         type: Number,
         required: true
     },
-    position: {
+    institutionName: {
         type: String,
         required: true
     },
@@ -23,12 +23,32 @@ const qualificationModel = new Schema({
         type: String,
         required: true
     },
-    startDate: {
+    from: {
         type: Date,
         required: true
     },
-    endDate: {
+    to: {
         type: Date,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true
+    },
+    weight: {
+        type: String,
+        required: true
+    },
+    qualificationLevel: {
+        type: String,
+        required: true
+    },
+    priority: {
+        type: Number,
+        required: true
+    },
+    user_id: {
+        type: String,
         required: true
     }
 })
